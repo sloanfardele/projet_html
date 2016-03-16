@@ -8,3 +8,5 @@
 
 echo "Hello World";
 echo "Bonjour";
+echo "test";
+echo "je fais un test n°2"
