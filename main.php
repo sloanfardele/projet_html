@@ -8,6 +8,10 @@
 
 echo "Hello World";
 echo "Bonjour";
+<<<<<<< HEAD
 echo "test";
 echo "je fais un test n°2";
 echo " test n° 655";
+=======
+echo "wallah j'espere que ca va marcher";
+>>>>>>> origin/master
