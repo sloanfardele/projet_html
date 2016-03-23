@@ -97,7 +97,7 @@ function testVictoirePetiteGrille (grille) {
     //...
     //...
     if (grille.casePGrille[0].jetonCase == grille.casePGrille[1].jetonCase && grille.casePGrille[0].jetonCase == grille.casePGrille[2].jetonCase && grille.casePGrille[0].jetonCase != "rien"){
-        if (grille.casePGrille[0].jetonCase == "croix"){
+        if (grille.casePGrille[0].jetonCase == "croix")
             return 1;
         else
             return 2;
