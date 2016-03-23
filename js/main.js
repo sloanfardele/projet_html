@@ -45,13 +45,13 @@ function initGrille() {
 
     //initialisation de la grille
     var txt = "";
-    txt += "<table>";
+    txt += "<table align=\"center\">";
     for (i=0; i<3; i++){
         txt += "<tr>";
         for (j=0; j<3; j++){
             g.caseGGrille[i].posx = i;
             g.caseGGrille[i].posy = j;
-            txt += "<td id='x"+g.caseGGrille[i].posx+"-y"+g.caseGGrille[i].posy+"' class=blanc>";
+            txt += "<td id='x"+g.caseGGrille[i].posx+"-y"+g.caseGGrille[i].posy+"' class=noir>";
 
 
             txt += "<table>";
@@ -60,7 +60,7 @@ function initGrille() {
                 for (l=0;l<3;l++){
                     g.caseGGrille[i].casePGrille[k].posx = k;
                     g.caseGGrille[i].casePGrille[k].posy = l;
-                    txt += "<td id='x"+g.caseGGrille[i].casePGrille[k].posx+"-y"+g.caseGGrille[i].casePGrille[k].posy+"' class=noir></td>";
+                    txt += "<td id='x"+g.caseGGrille[i].casePGrille[k].posx+"-y"+g.caseGGrille[i].casePGrille[k].posy+"' class=rouge></td>";
                 }
                 txt += "</tr>";
             }
