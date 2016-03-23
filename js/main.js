@@ -8,11 +8,11 @@ function caseGrille (jetonCase, posx, posy){
     this.posy = posy;
 }
 
-function petiteGrille (posx, posy, gagnée){
+function petiteGrille (posx, posy, jetonCase){
     this.casePGrille = new Array();
     this.posx = posx;
     this.posy = posy;
-    this.gagnée = false;
+    this.jetonCase = jetonCase;
 }
 
 function grandeGrille (){
@@ -23,7 +23,7 @@ g = new grandeGrille();
 
 initGrille();
 
-
+//initialisation de la grille de jeu
 function initGrille() {
     var i;
     var j;
@@ -33,7 +33,7 @@ function initGrille() {
     //initialisation du tableau de cases
     for (i=0;i<3;i++){
         for (j=0;j<3;j++){
-            g.caseGGrille.push(new petiteGrille(i, j, false));
+            g.caseGGrille.push(new petiteGrille(i, j, "rien"));
 
         }
     }
@@ -178,3 +178,5 @@ function testVictoirePetiteGrille (grille) {
     }
 
 }
+
+
