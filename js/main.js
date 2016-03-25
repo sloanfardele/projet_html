@@ -65,7 +65,7 @@ function initGrille() {
                 for (l=0;l<3;l++){
                     g.caseGGrille[i*3+j].casePGrille[k*3+l].posx = k;
                     g.caseGGrille[i*3+j].casePGrille[k*3+l].posy = l;
-                    txt += "<td id='x"+g.caseGGrille[i].casePGrille[k].posx+"-y"+g.caseGGrille[i].casePGrille[k].posy+"' onclick=setJeton(this) class=rouge></td>";
+                    txt += "<td id='x"+g.caseGGrille[i].casePGrille[k*3+l].posx+"-y"+g.caseGGrille[i].casePGrille[k*3+l].posy+"' onclick=setJeton(this) class=rouge></td>";
                     g.caseGGrille[i].casePGrille[k].posx = k;
                     g.caseGGrille[i].casePGrille[k].posy = l;
                 }
@@ -90,7 +90,7 @@ function initGrille() {
 // retourne 0 si pas de victoire, 1 si victoire des croix et 2 si victoire des ronds
 function testVictoirePetiteGrille (grille) {
 
-    /*console.log(grille.casePGrille[0].jetonCase);
+    console.log(grille.casePGrille[0].jetonCase);
     console.log(grille.casePGrille[1].jetonCase);
     console.log(grille.casePGrille[2].jetonCase);
     console.log(grille.casePGrille[3].jetonCase);
@@ -98,7 +98,7 @@ function testVictoirePetiteGrille (grille) {
     console.log(grille.casePGrille[5].jetonCase);
     console.log(grille.casePGrille[6].jetonCase);
     console.log(grille.casePGrille[7].jetonCase);
-    console.log(grille.casePGrille[8].jetonCase);*/
+    console.log(grille.casePGrille[8].jetonCase);
     //xxx
     //...
     //...
@@ -197,7 +197,6 @@ function setJeton (div) {
         var idName = div.getAttribute("id");
         var x = idName.substr(1, 1);
         var y = idName.substr(4, 1);
-        console.log (x, y);
     }
 
     else {
@@ -207,7 +206,6 @@ function setJeton (div) {
         var idName = div.getAttribute("id");
         var x = idName.substr(1, 1);
         var y = idName.substr(4, 1);
-        console.log (x, y);
     }
 
     tour++;
