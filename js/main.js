@@ -59,13 +59,13 @@ function initGrille() {
 
 
 
-            txt += "<table>";
+            txt += "<table id="+(i*3+j)+">";
             for (k=0;k<3;k++){
                 txt += "<tr>";
                 for (l=0;l<3;l++){
                     g.caseGGrille[i*3+j].casePGrille[k*3+l].posx = k;
                     g.caseGGrille[i*3+j].casePGrille[k*3+l].posy = l;
-                    txt += "<td id='x"+g.caseGGrille[i].casePGrille[k*3+l].posx+"-y"+g.caseGGrille[i].casePGrille[k*3+l].posy+"' onclick=setJeton(this) class=rouge></td>";
+                    txt += "<td id='x"+g.caseGGrille[i].casePGrille[k*3+l].posx+"-y"+g.caseGGrille[i].casePGrille[k*3+l].posy+"-t"+(i*3+j)+"' onclick=setJeton(this) class=rouge></td>";
                     g.caseGGrille[i].casePGrille[k].posx = k;
                     g.caseGGrille[i].casePGrille[k].posy = l;
                 }
@@ -189,29 +189,40 @@ function testVictoirePetiteGrille (grille) {
 }
 
 function setJeton (div) {
+    var className = div.getAttribute("class");
+
+
 
     if (tour%2 === 0){
-        var className=div.getAttribute("class");
         div.className="croix";
 
         var idName = div.getAttribute("id");
         var x = idName.substr(1, 1);
         var y = idName.substr(4, 1);
+        var numTable = idName.substr(7, 1);
+        var xy = parseInt(x*3+y);
+
+        g.caseGGrille[numTable].casePGrille[xy].jetonCase = "croix";
     }
 
     else {
-        var className=div.getAttribute("class");
         div.className="rond";
 
         var idName = div.getAttribute("id");
         var x = idName.substr(1, 1);
         var y = idName.substr(4, 1);
+        var numTable = idName.substr(7, 1);
+        var xy = parseInt(x*3+y);
+
+        g.caseGGrille[numTable].casePGrille[xy].jetonCase = "rond";
     }
 
     tour++;
 
     if (testVictoirePetiteGrille(g.caseGGrille[0]) === 1){
         console.log("victoire j1");
+
+        document.getElementById(numTable).className = "croixGagne";
     }
     else if (testVictoirePetiteGrille(g.caseGGrille[0]) === 2){
         console.log("victoire j2");
