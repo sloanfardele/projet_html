@@ -59,7 +59,7 @@ function initGrille() {
 
 
 
-            txt += "<table id="+(i*3+j)+" class='petitTableau'>";
+            txt += "<table id="+(i*3+j)+"   >";
             for (k=0;k<3;k++){
                 txt += "<tr>";
                 for (l=0;l<3;l++){
@@ -223,7 +223,8 @@ function setJeton (div) {
 
         console.log("victoire j1");
 
-        document.getElementById(numTable).className += "croixGagne";
+        document.getElementById(numTable).className = "croixGagne";
+        console.log (document.getElementById(numTable).className);
     }
     else if (testVictoirePetiteGrille(g.caseGGrille[0]) === 2){
         var className = div.getAttribute("class");
@@ -231,7 +232,7 @@ function setJeton (div) {
 
         console.log("victoire j2");
 
-        document.getElementById(numTable).className = "croixGagne";
+        document.getElementById(numTable).className = "rondGagne";
     }
 }
 
