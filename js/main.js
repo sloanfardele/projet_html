@@ -49,7 +49,7 @@ function initGrille() {
 
     //initialisation de la grille
     var txt = "";
-    txt += "<table align=\"center\">";
+    txt += "<table align=\"center\" class='grandTableau'>";
     for (i=0; i<3; i++){
         txt += "<tr>";
         for (j=0; j<3; j++){
@@ -59,7 +59,7 @@ function initGrille() {
 
 
 
-            txt += "<table id="+(i*3+j)+">";
+            txt += "<table id="+(i*3+j)+" class='petitTableau'>";
             for (k=0;k<3;k++){
                 txt += "<tr>";
                 for (l=0;l<3;l++){
@@ -80,17 +80,12 @@ function initGrille() {
     }
     txt += "</table>";
     document.getElementById("plateau").innerHTML += txt;
-
-
-
-
-
 }
 
 // retourne 0 si pas de victoire, 1 si victoire des croix et 2 si victoire des ronds
 function testVictoirePetiteGrille (grille) {
 
-    console.log(grille.casePGrille[0].jetonCase);
+    /*console.log(grille.casePGrille[0].jetonCase);
     console.log(grille.casePGrille[1].jetonCase);
     console.log(grille.casePGrille[2].jetonCase);
     console.log(grille.casePGrille[3].jetonCase);
@@ -98,7 +93,7 @@ function testVictoirePetiteGrille (grille) {
     console.log(grille.casePGrille[5].jetonCase);
     console.log(grille.casePGrille[6].jetonCase);
     console.log(grille.casePGrille[7].jetonCase);
-    console.log(grille.casePGrille[8].jetonCase);
+    console.log(grille.casePGrille[8].jetonCase);*/
     //xxx
     //...
     //...
@@ -189,30 +184,33 @@ function testVictoirePetiteGrille (grille) {
 }
 
 function setJeton (div) {
-    var className = div.getAttribute("class");
+
 
 
 
     if (tour%2 === 0){
+        var className = div.getAttribute("class");
         div.className="croix";
 
         var idName = div.getAttribute("id");
         var x = idName.substr(1, 1);
         var y = idName.substr(4, 1);
         var numTable = idName.substr(7, 1);
-        var xy = parseInt(x*3+y);
+        var xy = parseInt(x*3)+parseInt(y);
 
+        console.log(xy);
         g.caseGGrille[numTable].casePGrille[xy].jetonCase = "croix";
     }
 
     else {
+        var className = div.getAttribute("class");
         div.className="rond";
 
         var idName = div.getAttribute("id");
         var x = idName.substr(1, 1);
         var y = idName.substr(4, 1);
         var numTable = idName.substr(7, 1);
-        var xy = parseInt(x*3+y);
+        var xy = parseInt(x*3)+parseInt(y);
 
         g.caseGGrille[numTable].casePGrille[xy].jetonCase = "rond";
     }
@@ -220,12 +218,20 @@ function setJeton (div) {
     tour++;
 
     if (testVictoirePetiteGrille(g.caseGGrille[0]) === 1){
+        var className = div.getAttribute("class");
+        var numTable = idName.substr(7, 1);
+
         console.log("victoire j1");
 
-        document.getElementById(numTable).className = "croixGagne";
+        document.getElementById(numTable).className += "croixGagne";
     }
     else if (testVictoirePetiteGrille(g.caseGGrille[0]) === 2){
+        var className = div.getAttribute("class");
+        var numTable = idName.substr(7, 1);
+
         console.log("victoire j2");
+
+        document.getElementById(numTable).className = "croixGagne";
     }
 }
 

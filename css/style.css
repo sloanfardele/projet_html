@@ -18,6 +18,14 @@ table{
     border-collapse:collapse;
 }
 
+.grandTableau {
+    /*align = center;*/
+}
+
+.petitTableau {
+
+}
+
 td {
     border: 1px solid black;
 }
