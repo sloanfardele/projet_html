@@ -16,6 +16,7 @@ function petiteGrille (posx, posy, jetonCase){
 }
 
 function grandeGrille (){
+    //tableau de petiteGrille
     this.caseGGrille = new Array();
 }
 
@@ -64,10 +65,9 @@ function initGrille() {
                 for (l=0;l<3;l++){
                     g.caseGGrille[i*3+j].casePGrille[k*3+l].posx = k;
                     g.caseGGrille[i*3+j].casePGrille[k*3+l].posy = l;
-                    txt += "<td id='x"+g.caseGGrille[i].casePGrille[k].posx+"-y"+g.caseGGrille[i].casePGrille[k].posy+"' onclick=setJeton() class=noir></td>";
+                    txt += "<td id='x"+g.caseGGrille[i].casePGrille[k].posx+"-y"+g.caseGGrille[i].casePGrille[k].posy+"' onclick=setJeton(this) class=rouge></td>";
                     g.caseGGrille[i].casePGrille[k].posx = k;
                     g.caseGGrille[i].casePGrille[k].posy = l;
-                    txt += "<td id='x"+g.caseGGrille[i].casePGrille[k].posx+"-y"+g.caseGGrille[i].casePGrille[k].posy+"' class=rouge></td>";
                 }
                 txt += "</tr>";
             }
@@ -85,23 +85,28 @@ function initGrille() {
 
 
 
-
-
-
-    g.caseGGrille[0].casePGrille[0].jetonCase = "croix";
-    g.caseGGrille[0].casePGrille[1].jetonCase = "croix";
-    g.caseGGrille[0].casePGrille[2].jetonCase = "croix";
-
 }
 
 // retourne 0 si pas de victoire, 1 si victoire des croix et 2 si victoire des ronds
 function testVictoirePetiteGrille (grille) {
+
+    /*console.log(grille.casePGrille[0].jetonCase);
+    console.log(grille.casePGrille[1].jetonCase);
+    console.log(grille.casePGrille[2].jetonCase);
+    console.log(grille.casePGrille[3].jetonCase);
+    console.log(grille.casePGrille[4].jetonCase);
+    console.log(grille.casePGrille[5].jetonCase);
+    console.log(grille.casePGrille[6].jetonCase);
+    console.log(grille.casePGrille[7].jetonCase);
+    console.log(grille.casePGrille[8].jetonCase);*/
     //xxx
     //...
     //...
     if (grille.casePGrille[0].jetonCase == grille.casePGrille[1].jetonCase && grille.casePGrille[0].jetonCase == grille.casePGrille[2].jetonCase && grille.casePGrille[0].jetonCase != "rien"){
-        if (grille.casePGrille[0].jetonCase == "croix")
+        if (grille.casePGrille[0].jetonCase == "croix"){
+
             return 1;
+        }
         else
             return 2;
     }
@@ -180,10 +185,39 @@ function testVictoirePetiteGrille (grille) {
             return 2;
     }
 
+    return 0;
 }
 
-function setJeton () {
-    this.className = "croix";
+function setJeton (div) {
+
+    if (tour%2 === 0){
+        var className=div.getAttribute("class");
+        div.className="croix";
+
+        var idName = div.getAttribute("id");
+        var x = idName.substr(1, 1);
+        var y = idName.substr(4, 1);
+        console.log (x, y);
+    }
+
+    else {
+        var className=div.getAttribute("class");
+        div.className="rond";
+
+        var idName = div.getAttribute("id");
+        var x = idName.substr(1, 1);
+        var y = idName.substr(4, 1);
+        console.log (x, y);
+    }
+
+    tour++;
+
+    if (testVictoirePetiteGrille(g.caseGGrille[0]) === 1){
+        console.log("victoire j1");
+    }
+    else if (testVictoirePetiteGrille(g.caseGGrille[0]) === 2){
+        console.log("victoire j2");
+    }
 }
 
 
