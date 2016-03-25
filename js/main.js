@@ -52,7 +52,7 @@ function initGrille() {
 
     //initialisation de l'affichage des grilles
     var txt = "";
-    txt += "<table align=\"center\" class='grandTableau'>";
+    txt += "<table align=\"center\" class='grandTableau' id='grandTab'>";
     for (i=0; i<3; i++){
         txt += "<tr>";
         for (j=0; j<3; j++){
@@ -181,7 +181,7 @@ function testVictoireGrandeGrille (grille) {
     //xxx
     //...
     //...
-    if (grille.caseGGrille[0].jetonCase == grille.caseGGrille[1].jetonCase && grille.caseGGrille[0].jetonCase == grille.caseGGrille[2].jetonCase && grille.caseGGrille[0].jetonCase != "rien"){
+    if (grille.caseGGrille[0].jetonCase == grille.caseGGrille[1].jetonCase && grille.caseGGrille[0].jetonCase == grille.caseGGrille[2].jetonCase && grille.caseGGrille[0].jetonCase != ""){
         if (grille.caseGGrille[0].jetonCase == "croix"){
 
             return 1;
@@ -194,7 +194,7 @@ function testVictoireGrandeGrille (grille) {
     //...
     //xxx
     //...
-    if (grille.caseGGrille[3].jetonCase == grille.caseGGrille[4].jetonCase && grille.caseGGrille[3].jetonCase == grille.caseGGrille[5].jetonCase && grille.caseGGrille[3].jetonCase != "rien"){
+    if (grille.caseGGrille[3].jetonCase == grille.caseGGrille[4].jetonCase && grille.caseGGrille[3].jetonCase == grille.caseGGrille[5].jetonCase && grille.caseGGrille[3].jetonCase != ""){
         if (grille.caseGGrille[3].jetonCase == "croix")
             return 1;
         else
@@ -204,7 +204,7 @@ function testVictoireGrandeGrille (grille) {
     //...
     //...
     //xxx
-    if (grille.caseGGrille[6].jetonCase == grille.caseGGrille[7].jetonCase && grille.caseGGrille[6].jetonCase == grille.caseGGrille[8].jetonCase && grille.caseGGrille[6].jetonCase != "rien"){
+    if (grille.caseGGrille[6].jetonCase == grille.caseGGrille[7].jetonCase && grille.caseGGrille[6].jetonCase == grille.caseGGrille[8].jetonCase && grille.caseGGrille[6].jetonCase != ""){
         if (grille.caseGGrille[6].jetonCase == "croix")
             return 1;
         else
@@ -216,7 +216,7 @@ function testVictoireGrandeGrille (grille) {
     x..
     x..
     */
-    if (grille.caseGGrille[0].jetonCase == grille.caseGGrille[3].jetonCase && grille.caseGGrille[0].jetonCase == grille.caseGGrille[6].jetonCase && grille.caseGGrille[0].jetonCase != "rien"){
+    if (grille.caseGGrille[0].jetonCase == grille.caseGGrille[3].jetonCase && grille.caseGGrille[0].jetonCase == grille.caseGGrille[6].jetonCase && grille.caseGGrille[0].jetonCase != ""){
         if (grille.caseGGrille[0].jetonCase == "croix")
             return 1;
         else
@@ -228,7 +228,7 @@ function testVictoireGrandeGrille (grille) {
     .x.
     .x.
     */
-    if (grille.caseGGrille[1].jetonCase == grille.caseGGrille[4].jetonCase && grille.caseGGrille[1].jetonCase == grille.caseGGrille[7].jetonCase && grille.caseGGrille[1].jetonCase != "rien"){
+    if (grille.caseGGrille[1].jetonCase == grille.caseGGrille[4].jetonCase && grille.caseGGrille[1].jetonCase == grille.caseGGrille[7].jetonCase && grille.caseGGrille[1].jetonCase != ""){
         if (grille.caseGGrille[1].jetonCase == "croix")
             return 1;
         else
@@ -238,7 +238,7 @@ function testVictoireGrandeGrille (grille) {
     //..x
     //..x
     //..x
-    if (grille.caseGGrille[2].jetonCase == grille.caseGGrille[5].jetonCase && grille.caseGGrille[2].jetonCase == grille.caseGGrille[8].jetonCase && grille.caseGGrille[2].jetonCase != "rien"){
+    if (grille.caseGGrille[2].jetonCase == grille.caseGGrille[5].jetonCase && grille.caseGGrille[2].jetonCase == grille.caseGGrille[8].jetonCase && grille.caseGGrille[2].jetonCase != ""){
         if (grille.caseGGrille[2].jetonCase == "croix")
             return 1;
         else
@@ -248,7 +248,7 @@ function testVictoireGrandeGrille (grille) {
     //x..
     //.x.
     //..x
-    if (grille.caseGGrille[0].jetonCase == grille.caseGGrille[4].jetonCase && grille.caseGGrille[0].jetonCase == grille.caseGGrille[8].jetonCase && grille.caseGGrille[0].jetonCase != "rien"){
+    if (grille.caseGGrille[0].jetonCase == grille.caseGGrille[4].jetonCase && grille.caseGGrille[0].jetonCase == grille.caseGGrille[8].jetonCase && grille.caseGGrille[0].jetonCase != ""){
         if (grille.caseGGrille[0].jetonCase == "croix")
             return 1;
         else
@@ -258,7 +258,7 @@ function testVictoireGrandeGrille (grille) {
     //..x
     //.x.
     //x..
-    if (grille.caseGGrille[2].jetonCase == grille.caseGGrille[4].jetonCase && grille.caseGGrille[2].jetonCase == grille.caseGGrille[6].jetonCase && grille.caseGGrille[2].jetonCase != "rien"){
+    if (grille.caseGGrille[2].jetonCase == grille.caseGGrille[4].jetonCase && grille.caseGGrille[2].jetonCase == grille.caseGGrille[6].jetonCase && grille.caseGGrille[2].jetonCase != ""){
         if (grille.caseGGrille[2].jetonCase == "croix")
             return 1;
         else
@@ -270,6 +270,7 @@ function testVictoireGrandeGrille (grille) {
 
 //place le jeton de la couleur correspondant au tour (tour pair = croix, tour impair = rond) et vérifie si la grille est gagnée.
 //si la grille est gagnée, la grille indique le gagnant
+//puis test si la grande grille est gagnée
 function setJeton (div) {
 
     var className = div.getAttribute("class");
@@ -330,15 +331,13 @@ function setJeton (div) {
 
 
     //test de la victoire des croix sur la grande grille
-    if (testVictoireGrandeGrille(g) === 1){
-        document.getElementById(g).className = "croixGagne";
+    /*if (testVictoireGrandeGrille(g) === 1){
+        document.getElementById('grandTab').className = "croixGagne";
         console.log("victoire j1");
     }
     //test de la victoire des ronds sur la grille
-    else if (testVictoireGrandeGrille(g) === 2){
+    else if (testVictoireGrandeGrille('grandTab') === 2){
         document.getElementById(g).className = "rondGagne";
         console.log("victoire j2");
-    }
+    }*/
 }
-
-
