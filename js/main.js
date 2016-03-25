@@ -64,7 +64,7 @@ function initGrille() {
                 for (l=0;l<3;l++){
                     g.caseGGrille[i*3+j].casePGrille[k*3+l].posx = k;
                     g.caseGGrille[i*3+j].casePGrille[k*3+l].posy = l;
-                    txt += "<td id='x"+g.caseGGrille[i].casePGrille[k].posx+"-y"+g.caseGGrille[i].casePGrille[k].posy+"' class=noir></td>";
+                    txt += "<td id='x"+g.caseGGrille[i].casePGrille[k].posx+"-y"+g.caseGGrille[i].casePGrille[k].posy+"' onclick=setJeton() class=noir></td>";
                     g.caseGGrille[i].casePGrille[k].posx = k;
                     g.caseGGrille[i].casePGrille[k].posy = l;
                     txt += "<td id='x"+g.caseGGrille[i].casePGrille[k].posx+"-y"+g.caseGGrille[i].casePGrille[k].posy+"' class=rouge></td>";
@@ -180,6 +180,10 @@ function testVictoirePetiteGrille (grille) {
             return 2;
     }
 
+}
+
+function setJeton () {
+    this.className = "croix";
 }
 
 
