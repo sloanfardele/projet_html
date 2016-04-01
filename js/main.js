@@ -1,7 +1,3 @@
-
-
-tour = 0; //indique le tour de jeu
-
 function caseGrille (jetonCase, posx, posy){
     this.jetonCase = jetonCase;
     this.posx = posx;
@@ -9,7 +5,7 @@ function caseGrille (jetonCase, posx, posy){
 }
 
 function petiteGrille (posx, posy, jetonCase){
-    this.casePGrille = new Array();
+    this.caseGrille = new Array();
     this.posx = posx;
     this.posy = posy;
     this.jetonCase = jetonCase;
@@ -17,12 +13,28 @@ function petiteGrille (posx, posy, jetonCase){
 
 function grandeGrille (){
     //tableau de petiteGrille
-    this.caseGGrille = new Array();
-    this.gagnant = "";
+    this.caseGrille = new Array();
+    this.jetonCase = "rien";
 }
+
+//indique le tour de jeu
+tour = 0;
 
 //grande grille du jeu
 g = new grandeGrille();
+
+//indique la grille imposée pour jouer
+// -1 = toutes les grilles                    |0|1|2|
+// 0 = ligne du haut à gauche                 |3|4|5|
+// 1 = ligne du haut au milieu                |6|7|8|
+// 2 = ligne du haut à droite
+// 3 = ligne du milieu à gauche
+// 4 = ligne du milieu au milieu
+// 5 = ligne du milieu à droite
+// 6 = ligne du bas à gauche
+// 7 = ligne du bas au milieu
+// 8 = ligne du bas à droite
+autorisationGrille = -1;
 
 initGrille();
 
@@ -36,7 +48,7 @@ function initGrille() {
     //initialisation de la grande grille
     for (i=0;i<3;i++){
         for (j=0;j<3;j++){
-            g.caseGGrille.push(new petiteGrille(i, j, "rien"));
+            g.caseGrille.push(new petiteGrille(i, j, "rien"));
 
         }
     }
@@ -45,7 +57,7 @@ function initGrille() {
     for (i=0;i<3;i++){
         for (j=0;j<3;j++){
             for (k=0;k<9;k++){
-                g.caseGGrille[i*3+j].casePGrille.push(new caseGrille("rien", i, j));
+                g.caseGrille[i*3+j].caseGrille.push(new caseGrille("rien", i, j));
             }
         }
     }
@@ -56,9 +68,9 @@ function initGrille() {
     for (i=0; i<3; i++){
         txt += "<tr>";
         for (j=0; j<3; j++){
-            g.caseGGrille[i].posx = i;
-            g.caseGGrille[i].posy = j;
-            txt += "<td id='x"+g.caseGGrille[i].posx+"-y"+g.caseGGrille[i].posy+"' class=noir>";
+            g.caseGrille[i].posx = i;
+            g.caseGrille[i].posy = j;
+            txt += "<td id='x"+g.caseGrille[i].posx+"-y"+g.caseGrille[i].posy+"' class=noir>";
 
 
 
@@ -66,9 +78,9 @@ function initGrille() {
             for (k=0;k<3;k++){
                 txt += "<tr>";
                 for (l=0;l<3;l++){
-                    g.caseGGrille[i*3+j].casePGrille[k*3+l].posx = k;
-                    g.caseGGrille[i*3+j].casePGrille[k*3+l].posy = l;
-                    txt += "<td id='x"+g.caseGGrille[i].casePGrille[k*3+l].posx+"-y"+g.caseGGrille[i].casePGrille[k*3+l].posy+"-t"+(i*3+j)+"' onclick=setJeton(this) class=rouge></td>";
+                    g.caseGrille[i*3+j].caseGrille[k*3+l].posx = k;
+                    g.caseGrille[i*3+j].caseGrille[k*3+l].posy = l;
+                    txt += "<td id='x"+g.caseGrille[i].caseGrille[k*3+l].posx+"-y"+g.caseGrille[i].caseGrille[k*3+l].posy+"-t"+(i*3+j)+"' onclick=setJeton(this) class=vide></td>";
                 }
                 txt += "</tr>";
             }
@@ -84,13 +96,13 @@ function initGrille() {
 }
 
 // retourne 0 si pas de victoire, 1 si victoire des croix et 2 si victoire des ronds
-function testVictoirePetiteGrille (grille) {
+function testVictoire (grille) {
 
     //xxx
     //...
     //...
-    if (grille.casePGrille[0].jetonCase == grille.casePGrille[1].jetonCase && grille.casePGrille[0].jetonCase == grille.casePGrille[2].jetonCase && grille.casePGrille[0].jetonCase != "rien"){
-        if (grille.casePGrille[0].jetonCase == "croix"){
+    if (grille.caseGrille[0].jetonCase == grille.caseGrille[1].jetonCase && grille.caseGrille[0].jetonCase == grille.caseGrille[2].jetonCase && grille.caseGrille[0].jetonCase != "rien"){
+        if (grille.caseGrille[0].jetonCase == "croix"){
 
             return 1;
         }
@@ -102,8 +114,8 @@ function testVictoirePetiteGrille (grille) {
     //...
     //xxx
     //...
-    if (grille.casePGrille[3].jetonCase == grille.casePGrille[4].jetonCase && grille.casePGrille[3].jetonCase == grille.casePGrille[5].jetonCase && grille.casePGrille[3].jetonCase != "rien"){
-        if (grille.casePGrille[3].jetonCase == "croix")
+    if (grille.caseGrille[3].jetonCase == grille.caseGrille[4].jetonCase && grille.caseGrille[3].jetonCase == grille.caseGrille[5].jetonCase && grille.caseGrille[3].jetonCase != "rien"){
+        if (grille.caseGrille[3].jetonCase == "croix")
             return 1;
         else
             return 2;
@@ -112,8 +124,8 @@ function testVictoirePetiteGrille (grille) {
     //...
     //...
     //xxx
-    if (grille.casePGrille[6].jetonCase == grille.casePGrille[7].jetonCase && grille.casePGrille[6].jetonCase == grille.casePGrille[8].jetonCase && grille.casePGrille[6].jetonCase != "rien"){
-        if (grille.casePGrille[6].jetonCase == "croix")
+    if (grille.caseGrille[6].jetonCase == grille.caseGrille[7].jetonCase && grille.caseGrille[6].jetonCase == grille.caseGrille[8].jetonCase && grille.caseGrille[6].jetonCase != "rien"){
+        if (grille.caseGrille[6].jetonCase == "croix")
             return 1;
         else
             return 2;
@@ -124,8 +136,8 @@ function testVictoirePetiteGrille (grille) {
     x..
     x..
     */
-    if (grille.casePGrille[0].jetonCase == grille.casePGrille[3].jetonCase && grille.casePGrille[0].jetonCase == grille.casePGrille[6].jetonCase && grille.casePGrille[0].jetonCase != "rien"){
-        if (grille.casePGrille[0].jetonCase == "croix")
+    if (grille.caseGrille[0].jetonCase == grille.caseGrille[3].jetonCase && grille.caseGrille[0].jetonCase == grille.caseGrille[6].jetonCase && grille.caseGrille[0].jetonCase != "rien"){
+        if (grille.caseGrille[0].jetonCase == "croix")
             return 1;
         else
             return 2;
@@ -136,8 +148,8 @@ function testVictoirePetiteGrille (grille) {
     .x.
     .x.
     */
-    if (grille.casePGrille[1].jetonCase == grille.casePGrille[4].jetonCase && grille.casePGrille[1].jetonCase == grille.casePGrille[7].jetonCase && grille.casePGrille[1].jetonCase != "rien"){
-        if (grille.casePGrille[1].jetonCase == "croix")
+    if (grille.caseGrille[1].jetonCase == grille.caseGrille[4].jetonCase && grille.caseGrille[1].jetonCase == grille.caseGrille[7].jetonCase && grille.caseGrille[1].jetonCase != "rien"){
+        if (grille.caseGrille[1].jetonCase == "croix")
             return 1;
         else
             return 2;
@@ -146,8 +158,8 @@ function testVictoirePetiteGrille (grille) {
     //..x
     //..x
     //..x
-    if (grille.casePGrille[2].jetonCase == grille.casePGrille[5].jetonCase && grille.casePGrille[2].jetonCase == grille.casePGrille[8].jetonCase && grille.casePGrille[2].jetonCase != "rien"){
-        if (grille.casePGrille[2].jetonCase == "croix")
+    if (grille.caseGrille[2].jetonCase == grille.caseGrille[5].jetonCase && grille.caseGrille[2].jetonCase == grille.caseGrille[8].jetonCase && grille.caseGrille[2].jetonCase != "rien"){
+        if (grille.caseGrille[2].jetonCase == "croix")
             return 1;
         else
             return 2;
@@ -156,8 +168,8 @@ function testVictoirePetiteGrille (grille) {
     //x..
     //.x.
     //..x
-    if (grille.casePGrille[0].jetonCase == grille.casePGrille[4].jetonCase && grille.casePGrille[0].jetonCase == grille.casePGrille[8].jetonCase && grille.casePGrille[0].jetonCase != "rien"){
-        if (grille.casePGrille[0].jetonCase == "croix")
+    if (grille.caseGrille[0].jetonCase == grille.caseGrille[4].jetonCase && grille.caseGrille[0].jetonCase == grille.caseGrille[8].jetonCase && grille.caseGrille[0].jetonCase != "rien"){
+        if (grille.caseGrille[0].jetonCase == "croix")
             return 1;
         else
             return 2;
@@ -166,8 +178,8 @@ function testVictoirePetiteGrille (grille) {
     //..x
     //.x.
     //x..
-    if (grille.casePGrille[2].jetonCase == grille.casePGrille[4].jetonCase && grille.casePGrille[2].jetonCase == grille.casePGrille[6].jetonCase && grille.casePGrille[2].jetonCase != "rien"){
-        if (grille.casePGrille[2].jetonCase == "croix")
+    if (grille.caseGrille[2].jetonCase == grille.caseGrille[4].jetonCase && grille.caseGrille[2].jetonCase == grille.caseGrille[6].jetonCase && grille.caseGrille[2].jetonCase != "rien"){
+        if (grille.caseGrille[2].jetonCase == "croix")
             return 1;
         else
             return 2;
@@ -176,96 +188,41 @@ function testVictoirePetiteGrille (grille) {
     return 0;
 }
 
-// retourne 0 si pas de victoire, 1 si victoire des croix et 2 si victoire des ronds
-function testVictoireGrandeGrille (grille) {
-    //xxx
-    //...
-    //...
-    if (grille.caseGGrille[0].jetonCase == grille.caseGGrille[1].jetonCase && grille.caseGGrille[0].jetonCase == grille.caseGGrille[2].jetonCase && grille.caseGGrille[0].jetonCase != ""){
-        if (grille.caseGGrille[0].jetonCase == "croix"){
-
+//vérifie si le coup est autorisé (si le coup est joué sur une grille différente de la grille autorisée ou une grille déjà gagnée, le coup ne sera pas pris en compte)
+//0 : coup non autorisé
+//1 : coup autorisé
+function coupAutorise (grille, numTable) {
+    /*if (autorisationGrille === -1){
+        if (testVictoire(grille) === 0){
             return 1;
         }
-        else{
-            return 2;
+        return 0;
+    }
+    else (numTable != autorisationGrille)*/
+
+    if (testVictoire(grille)===0) {
+        if (autorisationGrille === -1){
+            return 1;
         }
+        else if (numTable != autorisationGrille)
+            return 0;
     }
 
-    //...
-    //xxx
-    //...
-    if (grille.caseGGrille[3].jetonCase == grille.caseGGrille[4].jetonCase && grille.caseGGrille[3].jetonCase == grille.caseGGrille[5].jetonCase && grille.caseGGrille[3].jetonCase != ""){
-        if (grille.caseGGrille[3].jetonCase == "croix")
-            return 1;
-        else
-            return 2;
-    }
+    return 1;
+}
 
-    //...
-    //...
-    //xxx
-    if (grille.caseGGrille[6].jetonCase == grille.caseGGrille[7].jetonCase && grille.caseGGrille[6].jetonCase == grille.caseGGrille[8].jetonCase && grille.caseGGrille[6].jetonCase != ""){
-        if (grille.caseGGrille[6].jetonCase == "croix")
-            return 1;
-        else
-            return 2;
+//change la variable autorisationGrille et indique graphiquement la grille jouable
+function setAutorisation (grille, xy){
+    if (testVictoire(grille) === 1 || testVictoire(grille) === 2){
+        console.log("grille déjà prise");
+        document.getElementById("grandTab").className = "jouable";
+        autorisationGrille = -1;
     }
-
-    /*
-    x..
-    x..
-    x..
-    */
-    if (grille.caseGGrille[0].jetonCase == grille.caseGGrille[3].jetonCase && grille.caseGGrille[0].jetonCase == grille.caseGGrille[6].jetonCase && grille.caseGGrille[0].jetonCase != ""){
-        if (grille.caseGGrille[0].jetonCase == "croix")
-            return 1;
-        else
-            return 2;
+    else {
+        console.log("grille pas prise");
+        autorisationGrille = xy;
+        document.getElementById(xy).className = "jouable";
     }
-
-    /*
-    .x.
-    .x.
-    .x.
-    */
-    if (grille.caseGGrille[1].jetonCase == grille.caseGGrille[4].jetonCase && grille.caseGGrille[1].jetonCase == grille.caseGGrille[7].jetonCase && grille.caseGGrille[1].jetonCase != ""){
-        if (grille.caseGGrille[1].jetonCase == "croix")
-            return 1;
-        else
-            return 2;
-    }
-
-    //..x
-    //..x
-    //..x
-    if (grille.caseGGrille[2].jetonCase == grille.caseGGrille[5].jetonCase && grille.caseGGrille[2].jetonCase == grille.caseGGrille[8].jetonCase && grille.caseGGrille[2].jetonCase != ""){
-        if (grille.caseGGrille[2].jetonCase == "croix")
-            return 1;
-        else
-            return 2;
-    }
-
-    //x..
-    //.x.
-    //..x
-    if (grille.caseGGrille[0].jetonCase == grille.caseGGrille[4].jetonCase && grille.caseGGrille[0].jetonCase == grille.caseGGrille[8].jetonCase && grille.caseGGrille[0].jetonCase != ""){
-        if (grille.caseGGrille[0].jetonCase == "croix")
-            return 1;
-        else
-            return 2;
-    }
-
-    //..x
-    //.x.
-    //x..
-    if (grille.caseGGrille[2].jetonCase == grille.caseGGrille[4].jetonCase && grille.caseGGrille[2].jetonCase == grille.caseGGrille[6].jetonCase && grille.caseGGrille[2].jetonCase != ""){
-        if (grille.caseGGrille[2].jetonCase == "croix")
-            return 1;
-        else
-            return 2;
-    }
-
-    return 0;
 }
 
 //place le jeton de la couleur correspondant au tour (tour pair = croix, tour impair = rond) et vérifie si la grille est gagnée.
@@ -274,8 +231,11 @@ function testVictoireGrandeGrille (grille) {
 function setJeton (div) {
 
     var className = div.getAttribute("class");
+    var idName = div.getAttribute("id");
+    var numTable = idName.substr(7, 1);
     //si la case n'est pas déjà prise
-    if (div.className != "croix" && div.className != "rond"){
+    console.log(coupAutorise(g.caseGrille[numTable], numTable));
+    if (div.className != "croix" && div.className != "rond" && coupAutorise(g.caseGrille[numTable], numTable) === 1){
 
         //si le tour est impair -> tour de la croix
         if (tour%2 === 0){
@@ -289,7 +249,7 @@ function setJeton (div) {
 
             //remplacement de la case vide par une croix
             div.className="croix";
-            g.caseGGrille[numTable].casePGrille[xy].jetonCase = "croix";
+            g.caseGrille[numTable].caseGrille[xy].jetonCase = "croix";
 
         }
 
@@ -304,40 +264,43 @@ function setJeton (div) {
             var xy = parseInt(x*3)+parseInt(y);
              //remplacement de la case vide par un rond
             div.className="rond";
-            g.caseGGrille[numTable].casePGrille[xy].jetonCase = "rond";
+            g.caseGrille[numTable].caseGrille[xy].jetonCase = "rond";
         }
+
+        setAutorisation(g.caseGrille[numTable], xy);
+        document.getElementById(numTable).className = "";
 
         tour++;
 
-    }
 
-    var className = div.getAttribute("class");
-    var numTable = idName.substr(7, 1);
 
-    //test de la victoire des croix sur la petite grille
-    if (testVictoirePetiteGrille(g.caseGGrille[numTable]) === 1){
         var className = div.getAttribute("class");
         var numTable = idName.substr(7, 1);
 
-        document.getElementById(numTable).className = "croixGagne";
-    }
-    //test de la victoire des ronds sur la grille
-    else if (testVictoirePetiteGrille(g.caseGGrille[numTable]) === 2){
-        var className = div.getAttribute("class");
-        var numTable = idName.substr(7, 1);
+        //test de la victoire des croix sur la petite grille
+        if (testVictoire(g.caseGrille[numTable]) === 1){
+            var className = div.getAttribute("class");
+            var numTable = idName.substr(7, 1);
 
-        document.getElementById(numTable).className = "rondGagne";
-    }
+            document.getElementById(numTable).className = "croixGagne";
+            g.caseGrille[numTable].jetonCase = "croix";
+        }
+        //test de la victoire des ronds sur la grille
+        else if (testVictoire(g.caseGrille[numTable]) === 2){
+            var className = div.getAttribute("class");
+            var numTable = idName.substr(7, 1);
 
+            document.getElementById(numTable).className = "rondGagne";
+            g.caseGrille[numTable].jetonCase = "rond";
+        }
 
-    //test de la victoire des croix sur la grande grille
-    /*if (testVictoireGrandeGrille(g) === 1){
-        document.getElementById('grandTab').className = "croixGagne";
-        console.log("victoire j1");
+        //test de la victoire des croix sur la grande grille
+        if (testVictoire(g) === 1){
+            document.getElementById('grandTab').className = "croixGagne";
+        }
+        //test de la victoire des ronds sur la grille
+        else if (testVictoire(g) === 2){
+            document.getElementById('grandTab').className = "rondGagne";
+        }
     }
-    //test de la victoire des ronds sur la grille
-    else if (testVictoireGrandeGrille('grandTab') === 2){
-        document.getElementById(g).className = "rondGagne";
-        console.log("victoire j2");
-    }*/
 }
