@@ -40,6 +40,10 @@ initGrille();
 
 //initialisation de la grille de jeu
 function initGrille() {
+    autorisationGrille = -1;
+    tour = 0;
+
+
     var i;
     var j;
     var k;
