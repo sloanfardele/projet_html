@@ -101,7 +101,7 @@ function testVictoire (grille) {
     //xxx
     //...
     //...
-    if (grille.caseGrille[0].jetonCase == grille.caseGrille[1].jetonCase && grille.caseGrille[0].jetonCase == grille.caseGrille[2].jetonCase && grille.caseGrille[0].jetonCase != "rien"){
+    if (grille.caseGrille[0].jetonCase === grille.caseGrille[1].jetonCase && grille.caseGrille[0].jetonCase === grille.caseGrille[2].jetonCase && grille.caseGrille[0].jetonCase != "rien"){
         if (grille.caseGrille[0].jetonCase == "croix"){
 
             return 1;
@@ -192,22 +192,30 @@ function testVictoire (grille) {
 //0 : coup non autorisé
 //1 : coup autorisé
 function coupAutorise (grille, numTable) {
-    /*if (autorisationGrille === -1){
-        if (testVictoire(grille) === 0){
-            return 1;
-        }
-        return 0;
-    }
-    else (numTable != autorisationGrille)*/
+    console.log("-");
 
     if (testVictoire(grille)===0) {
+        console.log("je rentre");
         if (autorisationGrille === -1){
-            return 1;
-        }
-        else if (numTable != autorisationGrille)
+            console.log("autor grille = -1");
+            if (testVictoire(grille) === 0){
+                console.log("testvictoire = 0");
+                return 1;
+            }
+            console.log("test victoire != 0");
             return 0;
+        }
+        else if (numTable != autorisationGrille){
+            console.log("numtable != autorisationgrille");
+            return 0;
+        }
     }
 
+    if (testVictoire(grille) === 1 || testVictoire(grille) === 2){
+        return 0;
+    }
+
+    console.log("ressort");
     return 1;
 }
 
@@ -237,7 +245,11 @@ function setJeton (div) {
     var className = div.getAttribute("class");
     var idName = div.getAttribute("id");
     var numTable = idName.substr(7, 1);
+    var x = idName.substr(1, 1);
+    var y = idName.substr(4, 1);
+    var xy = parseInt(x*3)+parseInt(y);
     //si la case n'est pas déjà prise
+    console.log(numTable);
     if (div.className != "croix" && div.className != "rond" && coupAutorise(g.caseGrille[numTable], numTable) === 1){
 
         //si le tour est impair -> tour de la croix
@@ -272,7 +284,7 @@ function setJeton (div) {
 
         document.getElementById(numTable).className = "";
 
-        console.log(numTable);
+
         setAutorisation(g.caseGrille[xy], xy);
 
 
@@ -309,4 +321,5 @@ function setJeton (div) {
             document.getElementById('grandTab').className = "rondGagne";
         }
     }
+    console.log ("utorisation : "+autorisationGrille);
 }
