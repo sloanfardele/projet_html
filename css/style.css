@@ -14,6 +14,8 @@
 
 h1{
     text-align: center;
+    font-family: Arial;
+
 }
 
 table{
@@ -21,9 +23,6 @@ table{
     border-collapse:collapse;
 }
 
-.grandTableau {
-    /*align = center;*/
-}
 
 .petitTableau {
     /*background-color: red;*/
@@ -56,6 +55,33 @@ td {
 
 }
 
+
+#boutton
+{
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+    border:none;
+    border-radius: 21px;
+    font-family: Arial;
+    color: #2981FF;
+    font-size: 14px;
+    background: #FFCB69;
+    padding: 10px 30px 10px 30px;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+}
+
+#boutton:hover
+{
+    color: #FFCB69;
+    background: #2981FF;
+    text-decoration: none;
+    cursor: pointer;
+
+}
 
 
 
