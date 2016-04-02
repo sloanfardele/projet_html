@@ -99,7 +99,7 @@ function initGrille() {
     document.getElementById("plateau").innerHTML = txt;
 }
 
-// retourne 0 si pas de victoire, 1 si victoire des croix et 2 si victoire des ronds
+// retourne 0 si pas de victoire, 1 si victoire des croix, 2 si victoire des ronds, 3 si égalité
 function testVictoire (grille) {
 
     //xxx
@@ -318,12 +318,13 @@ function setJeton (div) {
 
         //test de la victoire des croix sur la grande grille
         if (testVictoire(g) === 1){
+            alert("Les rouges ont gagné au bout de "+tour+" tours");
             document.getElementById('grandTab').className = "croixGagne";
         }
         //test de la victoire des ronds sur la grille
         else if (testVictoire(g) === 2){
+            alert("Les rouges ont gagné au bout de "+tour+" tours");
             document.getElementById('grandTab').className = "rondGagne";
         }
     }
-    console.log ("utorisation : "+autorisationGrille);
 }

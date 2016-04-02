@@ -1,13 +1,10 @@
 .noir {
     background-color: white;
-
 }
 
 .vide {
-    /*background-color: white;*/
     width:50px;
     height: 50px;
-
 }
 
 .jouable {
@@ -16,6 +13,7 @@
 
 h1{
     text-align: center;
+    font-family: Arial;
 
 }
 
