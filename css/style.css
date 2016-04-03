@@ -17,6 +17,7 @@
 h1{
     text-align: center;
     font-family: Arial;
+    background:#29B26D;
 
 }
 
@@ -104,4 +105,13 @@ h2{
 
 table .grandeGrille {
 
+}
+
+#lien_bouton
+{
+    text-decoration: none;
+}
+
+#presentation{
+    font-family: Arial ;
 }
