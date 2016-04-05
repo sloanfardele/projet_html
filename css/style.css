@@ -1,60 +1,78 @@
 .noir {
     background-color: white;
+
 }
 
 .vide {
     /*background-color: white;*/
     width:50px;
     height: 50px;
+
 }
 
 .jouable {
-    background-color: green;
+    border: 3px solid #29B26D ;
 }
 
 h1{
     text-align: center;
     font-family: Arial;
+    background:#29B26D;
 
 }
 
 table{
     border:1px solid black;
     border-collapse:collapse;
+
+
 }
 
+.grandTableau {
+    /*align = center;*/
+
+    }
 
 .petitTableau {
-    /*background-color: red;*/
-}
+    background-color: #2981FF;
+
+   }
 
 td {
     border: 1px solid black;
+
 }
 
 .croix {
-    background-color: red;
+    background-color: #2981FF;
     width:50px;
     height: 50px;
 }
 
 .rond {
-    background-color: yellow;
+    background-color: #FFCB69;
     width:50px;
     height: 50px;
 }
 
 .croixGagne td{
-    background-color: red;
+    background-color: #2981FF;
     border-style: none;
 }
 
 .rondGagne td{
-    background-color: yellow;
+    background-color: #FFCB69;
     border-style: none;
 
 }
 
+h2{
+    text-align: center
+}
+
+#bt{
+    text-align: center;
+}
 
 #boutton
 {
@@ -80,4 +98,19 @@ td {
     background: #2981FF;
     text-decoration: none;
     cursor: pointer;
+}
+
+
+
+table .grandeGrille {
+
+}
+
+#lien_bouton
+{
+    text-decoration: none;
+}
+
+#presentation{
+    font-family: Arial ;
 }
