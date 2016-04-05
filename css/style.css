@@ -11,18 +11,18 @@
 }
 
 .jouable {
-    border: 3px solid #29B26D ;
+    border: 2px solid #29B26D ;
 }
 
 h1{
     text-align: center;
     font-family: Arial;
-    background:#29B26D;
+    color: #29B26D;
 
 }
 
 table{
-    border:1px solid black;
+    border:2px solid;
     border-collapse:collapse;
 
 
@@ -74,7 +74,7 @@ h2{
     text-align: center;
 }
 
-#boutton
+.boutton
 {
     margin-top: 30px;
     margin-left: auto;
@@ -92,7 +92,7 @@ h2{
     display: block;
 }
 
-#boutton:hover
+.boutton:hover
 {
     color: #FFCB69;
     background: #2981FF;
@@ -114,3 +114,11 @@ table .grandeGrille {
 #presentation{
     font-family: Arial ;
 }
+
+
+video
+{
+    display: block;
+    margin: auto;
+}
+
