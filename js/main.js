@@ -331,12 +331,12 @@ function setJeton (div) {
         //test de la victoire des croix sur la grande grille
         if (testVictoire(g) === 1){
             document.getElementById('grandTab').className = "croixGagne";
-            alert("Les rouges ont gagné au bout de "+tour+" tours !");
+            alert("Les bleus ont gagné au bout de "+tour+" tours !");
         }
         //test de la victoire des ronds sur la grille
         else if (testVictoire(g) === 2){
             document.getElementById('grandTab').className = "rondGagne";
-            alert("Les rouges ont gagné au bout de "+tour+" tours !");
+            alert("Les jaunes ont gagné au bout de "+tour+" tours !");
         }
     }
 }
