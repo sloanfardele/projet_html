@@ -102,7 +102,7 @@ function initGrille() {
     }
 
     //initialisation de l'affichage des grilles
-    var txt = "<audio id='son' src='media/poc.mp3'></audio>"; //variable contenant le code html qui sera envoyé à la fin de la boucle
+    var txt = "<audio id='son' src='media/poc.mp3'></audio><audio id='erreur' src='media/erreur.mp3'></audio>"; //variable contenant le code html qui sera envoyé à la fin de la boucle
     txt += "<table align=\"center\" class='grandTableau' id='grandTab'>"; //création du grand tableau
     for (var i=0; i<3; i++){
         txt += "<tr>";
@@ -294,10 +294,8 @@ function setJeton (div) {
     //si la case n'est pas déjà prise
     if (div.className != "croix" && div.className != "rond" && coupAutorise(g.caseGrille[numTable], numTable) === 1){
 
-
         player = document.getElementById('son');
         player.play();
-
 
         //si le tour est impair -> tour de la croix
         if (tour%2 === 0){
@@ -343,5 +341,10 @@ function setJeton (div) {
             document.getElementById('grandTab').className = "rondGagne";
             alert("Les jaunes ont gagné au bout de "+tour+" tours !");
         }
+    }
+
+    else {
+        player = document.getElementById('erreur');
+        player.play();
     }
 }
